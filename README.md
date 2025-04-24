@@ -19,11 +19,13 @@ Choose your grub boot entry when booting headlessly/wol.
 To list GRUB configurations, go to or make a request to the following endpoint:
 
 ```
-https://grub.themajorones.dev/api/list?repo=<your-repository-url>
+https://grub.themajorones.dev/api/list?repo=<your-repository-url>&branch=<branch-name>
 ```
 
 > [!TIP]
-> 
+>
+> Branch is optional. If not provided, `grub` will be used as the default branch.
+>
 > ```bash
 > curl "https://grub.themajorones.dev/api/list?repo=https://github.com/iamSlightlyWind/network-grub"
 > ```
