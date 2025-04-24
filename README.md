@@ -4,13 +4,13 @@ Choose your grub boot entry when booting headlessly/wol.
 
 # Features
 
-| Feature                          | Status   | Private Repository Access |
-|----------------------------------|----------|---------------------------|
-| List boot entries                |Finished. Repository independent| Not yet|
-| Show current boot entry          |Not yet| Not yet|
-| Change boot entry                |Finished. Repository independent| Not yet|
-| Serve boot config                |Finished. Repository independent| Not yet|
-| Upload, update boot entries      |Not yet| Not yet|
+| Feature                          | Status   |
+|----------------------------------|----------|
+| List boot entries                |Finished. Repository independent|
+| Show current boot entry          |Finished. Repository independent|
+| Change boot entry                |Finished. Repository independent|
+| Serve boot config                |Finished. Repository independent|
+| Upload, update boot entries      |Not yet|
 
 # API Guide
 
@@ -72,3 +72,19 @@ https://grub.themajorones.dev/api/boot?repo=<repo-url>&branch=<branch-name>&toke
 > ```
 >
 > Will return the `state`.cfg file in the repository.
+
+## Get current boot entry
+
+To get the current boot entry, go to or make a request to the following endpoint:
+
+```
+https://grub.themajorones.dev/api/current?repo=<repo-url>&branch=<branch-name>&token=<token>
+```
+
+> [!TIP]
+>
+> ```bash
+> curl https://grub.themajorones.dev/api/current?repo=https://github.com/iamSlightlyWind/network-grub
+> ```
+>
+> Will return the current boot entry.
