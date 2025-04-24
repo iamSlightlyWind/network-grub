@@ -1,20 +1,32 @@
 export default async function handler(req, res) {
     try {
-        const repoOwner = process.env.VERCEL_GIT_REPO_OWNER;
-        const repoSlug = process.env.VERCEL_GIT_REPO_SLUG;
+        const { repo } = req.query;
 
-        if (!repoOwner || !repoSlug) {
-            throw new Error('Vercel environment variables for the repository are not set.');
+        if (!repo) {
+            throw new Error('Repository URL parameter is required.');
         }
+
+        const match = repo.match(/github\.com\/([^/]+)\/([^/]+)/);
+        if (!match) {
+            throw new Error('Invalid repository URL format.');
+        }
+
+        const repoOwner = match[1];
+        const repoSlug = match[2];
 
         const repoUrl = `https://api.github.com/repos/${repoOwner}/${repoSlug}/contents`;
         console.log(`Fetching repository contents from: ${repoUrl}`);
 
-        const response = await fetch(repoUrl, {
-            headers: {
-                'Accept': 'application/vnd.github.v3+json',
-            },
-        });
+        const headers = {
+            'Accept': 'application/vnd.github.v3+json',
+        };
+
+        const githubToken = process.env.GITHUB_TOKEN;
+        if (githubToken) {
+            headers['Authorization'] = `Bearer ${githubToken}`;
+        }
+
+        const response = await fetch(repoUrl, { headers });
 
         if (!response.ok) {
             throw new Error(`Failed to fetch repository contents: ${response.statusText}`);
