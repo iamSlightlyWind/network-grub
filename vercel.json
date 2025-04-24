@@ -3,5 +3,12 @@
         "deploymentEnabled": {
             "grub": false
         }
-    }
+    },
+    "redirects": [
+        {
+            "source": "/",
+            "destination": "/api/root",
+            "permanent": false
+        }
+    ]
 }
