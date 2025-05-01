@@ -62,13 +62,13 @@ https://grub.themajorones.dev/api/change?token=<token>&repo=<repo-url>&branch=<b
 To get the boot config, make a request to the following endpoint:
 
 ```
-https://grub.themajorones.dev/api/boot?repo=<repo-url>&branch=<branch-name>&token=<token>
+https://grub.themajorones.dev/api/config?repo=<repo-url>&branch=<branch-name>&token=<token>
 ```
 
 > [!TIP]
 > 
 > ```bash
-> curl https://grub.themajorones.dev/api/boot?repo=https://github.com/iamSlightlyWind/network-grub
+> curl https://grub.themajorones.dev/api/config?repo=https://github.com/iamSlightlyWind/network-grub
 > ```
 >
 > Will return the `state`.cfg file in the repository.
