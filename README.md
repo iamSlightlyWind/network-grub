@@ -11,6 +11,7 @@ Choose your grub boot entry when booting headlessly/wol.
 | Change boot entry                |Finished. Repository independent|
 | Serve boot config                |Finished. Repository independent|
 | Upload, update boot entries      |Not yet|
+| Wake-on-Lan over SSH             |Finished. Self deploy required|
 
 # API Guide
 
@@ -88,3 +89,21 @@ https://grub.themajorones.dev/api/current?repo=<repo-url>&branch=<branch-name>&t
 > ```
 >
 > Will return the current boot entry.
+
+## Wake-on-Lan over SSH
+
+To wake up a machine over SSH, go to or make a request to the following endpoint:
+
+```
+localhost:3000/api/boot?adress=<network-adress>&port=<port>&mac=<mac-address>
+```
+
+> [!TIP]
+> ```bash
+> curl https://grub.themajorones.dev/api/boot?adress=router.themajorones.dev&mac=00:00:00:00:00:00
+> ```
+>
+> Will wake up the machine with the given MAC address over SSH.
+
+> [!NOTE]
+> The feature is not configured to accept authentication, but uses environment variables due to concerns about security. You will need to deploy the server yourself and set `SSH_USERNAME` and `SSH_PASSWORD` or `SSH_PRIVATE_KEY`.
