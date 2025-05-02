@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         if (process.env.SSH_PRIVATE_KEY) {
             sshConfig.privateKey = process.env.SSH_PRIVATE_KEY;
         } else if (process.env.SSH_PASSWORD) {
-            sshConfig.password = SSH_PASSWORD;
+            sshConfig.password = process.env.SSH_PASSWORD;
         } else {
             return res.status(500).json({ error: 'No SSH authentication method provided.' });
         }
