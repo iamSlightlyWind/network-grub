@@ -1,9 +1,9 @@
 import { NodeSSH } from 'node-ssh';
 
 export default async function handler(req, res) {
-    let { adress, port, mac } = req.body;
+    let { address, port, mac } = req.query;
 
-    if (!adress || !mac) {
+    if (!address || !mac) {
         return res.status(400).json({ error: 'Address and MAC parameters are required.' });
     }
 
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     try {
         const sshConfig = {
-            host: adress,
+            host: address,
             username: process.env.SSH_USERNAME,
             port: parseInt(port, 10),
         };
